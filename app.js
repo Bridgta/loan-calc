@@ -31,8 +31,36 @@ function calculateResults(e) {
             2
         );
     } else {
-        console.log("Please check your numbers");
+        showError("Please check your numbers");
     }
 
     e.preventDefault();
+}
+
+//show error
+
+function showError(error) {
+    //create div
+    const errorDiv = document.createElement("div");
+
+    //get elements
+    const card = document.querySelector(".card");
+    const heading = document.querySelector(".heading");
+
+    //add class
+    errorDiv.className = "alert alert-danger";
+
+    //create text node and append to div
+    errorDiv.appendChild(document.createTextNode(error));
+
+    //Insert error above heading
+    card.insertBefore(errorDiv, heading);
+
+    //Clear error after3 seconds
+    setTimeout(clearError, 3000);
+}
+
+//clear error
+function clearError() {
+    document.querySelector(".alert").remove();
 }
